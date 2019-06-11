@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+
+  <style>
+    ons-splitter-side ons-icon.ons-icon {
+      font-size: 20px;
+      color: #333;
+      margin-right: 10px;
+    }
+  </style>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-firestore.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBvJNyIrVHnY0eA3CLZS2-f5OgXKuBIbD4",
+      authDomain: "sandboxed-4844f.firebaseapp.com",
+      databaseURL: "https://sandboxed-4844f.firebaseio.com",
+      projectId: "sandboxed-4844f",
+      storageBucket: "sandboxed-4844f.appspot.com",
+      messagingSenderId: "353517497694",
+      appId: "1:353517497694:web:c744bb56783a0cbb"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <title></title>
+</head>
+
+<body>
+  <ons-splitter>
+    <ons-splitter-side id="menu" side="left" width="300px" collapse swipeable>
+      <ons-page>
+        <ons-list id="menuList">
+          <ons-list-item onclick="fn.load('home.html')" tappable>
+            <div class="center list-item__center">
+              <ons-icon icon="md-home"></ons-icon>Home
+            </div>
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+  </ons-splitter>
+
+  <template id="home.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">Home</div>
+        <div class="right"></div>
+      </ons-toolbar>
+      <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+        Swipe right to open the menu!
+      </p>
+      <div style="text-align: center; padding: 10px;">
+        <ons-button class="button">Test</ons-button>
+      </div>
+    </ons-page>
+  </template>
+
+  <script src="main.js"></script>
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script>
+    ons.platform.select("android");
+    window.fn = {};
+
+    window.fn.open = function () {
+      var menu = document.getElementById("menu");
+      menu.open();
+    };
+
+    window.fn.load = function (page) {
+      var content = document.getElementById("content");
+      var menu = document.getElementById("menu");
+      content.load(page).then(menu.close.bind(menu));
+    };
+
+    setTimeout(function () {
+      document.querySelector("ons-splitter-content .center").textContent = name;
+    }, 200);
+
+    document.querySelector('title').textContent = name;
+
+  </script>
+
+
+</body>
+
+</html>
